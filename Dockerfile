@@ -4,17 +4,17 @@ FROM eclipse-temurin:17-jdk
 # Set working directory
 WORKDIR /app
 
-# Copy project files
-COPY . .
+# Copy only the Spring Boot project
+COPY itemapi/ .
 
-# Make Maven Wrapper executable (CRITICAL FIX)
+# Make Maven Wrapper executable
 RUN chmod +x mvnw
 
 # Build the application
 RUN ./mvnw clean package -DskipTests
 
-# Expose port used by Spring Boot
+# Expose Spring Boot port
 EXPOSE 8080
 
-# Run the jar
+# Run the application
 CMD ["java", "-jar", "target/*.jar"]
