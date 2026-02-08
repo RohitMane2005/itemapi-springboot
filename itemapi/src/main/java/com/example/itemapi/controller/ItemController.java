@@ -8,6 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/items")
+@CrossOrigin(
+        origins = "https://itemapi-ui.vercel.app",
+        allowedHeaders = "*",
+        methods = {
+                RequestMethod.GET,
+                RequestMethod.POST,
+                RequestMethod.OPTIONS
+        }
+)
 public class ItemController {
 
     private final ItemService itemService;
